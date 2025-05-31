@@ -1,0 +1,30 @@
+| BACKEND |
+Fastify + Prisma
+    • CRUD de Clientes: Criar rotas para cadastrar,listar e editar clientes, usando Fastify e persistindo os dados no banco MySQL via Prisma.
+    • Listar Ativos: Endpoint que retorna uma lista fixa de ativos financeiros (por exemplo, “Ação XYZ”, “Fundo ABC”) com valores estáticos.
+    • Ferramentas e bibliotecas: 
+        • Prisma ORM: Configurar o Prisma para interagir com o MySQL de maneira simples.
+        • Banco de Dados: Banco MySQL rodando em um contêiner, configurado via Docker Compose.
+        • Zod: Usar a biblioteca para validação do payload das requisições.
+
+
+Docker
+    • Configurar o docker-compose.yml para rodar:
+        • Serviço db: Instância de MySQL (ou MariaDB) para armazenar os dados dos clientes.
+        • backend: Servidor Fastify configurado para se conectar ao banco de dados e rodar as rotas.
+
+    → Estrutura do Docker Compose
+        1. Serviço db usando a imagem Postgres(ou MySQL) com senha segura.
+        2. Configurar variáveis de ambiente (host, usuário, senha, database) no backend para o Prisma.
+
+
+| FRONTEND |
+Next.js
+    • Página de Clientes: Página simples para listar, adicionar e editar clientes.
+    • Página de Ativos: Exibe a lista fixa de ativos (somente leitura).
+    • UI: Não precisa de design avançado, mas o uso de ShadCN é recomendado para criar uma interface funcional, reutilizável e personalizável.
+    • Ferramentas e bibliotecas: 
+        • ShadCN: Usar ferramenta para criar componentes padrão de UI para uniformizar a estilização do site (como Button, Text ...). 
+        • React Query: Usar biblioteca para fazer BUSCAS no backend.
+        • React Hook Form + Zod: Usar bibliotecas para ENVIAR E VALIDAR FORMULÁRIOS ao backend.
+        • Axios: Fazer requisições para o backend.
