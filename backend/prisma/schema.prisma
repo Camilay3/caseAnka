@@ -5,7 +5,6 @@ generator client {
 datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
-  referentialIntegrity = "prisma"
 }
 
 model Cliente {
@@ -13,4 +12,22 @@ model Cliente {
   nome   String
   email  String  @unique
   status Boolean
+  alocacoes Alocacao[]
+}
+
+model Ativo {
+  id     Int        @id @default(autoincrement())
+  nome   String
+  valor  Float
+  alocacoes Alocacao[]
+}
+
+model Alocacao {
+  id         Int      @id @default(autoincrement())
+  clienteId  Int
+  ativoId    Int
+  quantidade Float
+
+  cliente Cliente @relation(fields: [clienteId], references: [id])
+  ativo   Ativo   @relation(fields: [ativoId], references: [id])
 }

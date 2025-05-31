@@ -3,7 +3,13 @@ import { prisma } from "../server";
 import { clienteSchema } from "../schemas/clienteSchema";
 
 interface ClienteParams {
-  id: string; // Na rota HTTP o id vem como string
+    id: string; // Na rota HTTP o id vem como string
+}
+
+interface ClienteBody {
+    nome: string;
+    email: string;
+    status: boolean;
 }
 
 export async function clienteRoutes(app: FastifyInstance) {
@@ -11,7 +17,7 @@ export async function clienteRoutes(app: FastifyInstance) {
         return await prisma.cliente.findMany(); // Busca todos os clientes
     });
 
-    app.post("/clientes", async (request, reply) => {
+    app.post<{ Body: ClienteBody }>("/clientes", async (request, reply) => {
         try {
             const data = clienteSchema.parse(request.body);
             const cliente = await prisma.cliente.create({ data }); // Cria um novo cliente
@@ -21,7 +27,7 @@ export async function clienteRoutes(app: FastifyInstance) {
         }
     });
 
-    app.put<{ Params: ClienteParams }>("/clientes/:id", async (request, reply) => {
+    app.put<{ Params: ClienteParams; Body: ClienteBody }>("/clientes/:id", async (request, reply) => {
         const id = Number(request.params.id);
         if (isNaN(id)) {
             return reply.code(400).send({ error: "ID inválido" });
@@ -46,7 +52,7 @@ export async function clienteRoutes(app: FastifyInstance) {
 
         try {
             await prisma.cliente.delete({ where: { id } }); // Deleta quando o id é válido
-            reply.code(204).send(); 
+            reply.code(204).send();
         } catch (error) {
             reply.code(400).send(error);
         }
