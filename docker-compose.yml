@@ -21,7 +21,7 @@ services:
     ports:
       - "3001:3001"
     environment:
-      DATABASE_URL: mysql://user:senha123@db:3306/investimentos
+      DATABASE_URL: mysql://root:root@db:3306/investimentos
 
 volumes:
   db_data:

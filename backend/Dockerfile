@@ -9,7 +9,7 @@ RUN npm install
 COPY . .
 
 RUN npx prisma generate
+RUN apt-get update && apt-get install -y default-mysql-client
 EXPOSE 3001
 
-# Iniciar o servidor usando tsx
-CMD ["npx", "tsx", "src/server.ts"]
+CMD ["npm", "run", "dev"]
