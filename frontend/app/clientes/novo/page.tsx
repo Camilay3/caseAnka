@@ -1,3 +1,4 @@
+'use client';
 import { useMutation, useQueryClient } from 'react-query';
 import { ClientForm } from '@/components/ClientForm';
 import { api } from '@/lib/api';
