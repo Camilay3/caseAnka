@@ -3,7 +3,7 @@
 import { useQuery } from 'react-query';
 import { api } from '@/lib/api';
 import { Button } from "@/components/ui/button";
-import { Plus, MoveLeft } from "lucide-react";
+import { Plus, MoveLeft, Eye, Pen } from "lucide-react";
 import Link from "next/link";
 
 interface Cliente {
@@ -37,7 +37,14 @@ export default function ClientsPage() {
                 <div className="w-full">
                     {clientes!.map((cliente) => (
                         <div key={cliente.id} className="grid grid-cols-1 sm:grid-cols-[2fr_3fr_1fr] gap-4 w-full border-b border-gray-200 py-2 text-sm text-white">
-                            <p><span className="sm:hidden font-semibold">Nome: </span>{cliente.nome}</p>
+                            <p>
+                                <Button variant="link" size="icon" className="cursor-pointer text-white size-2 mr-4">
+                                    <Link href={`/clientes/${cliente.id}`}><Eye /></Link>
+                                </Button>
+                                <Button variant="link" size="icon" className="cursor-pointer text-white size-2 mr-4">
+                                    <Link href={`/clientes/${cliente.id}/editar`}><Pen /></Link>
+                                </Button>
+                                <span className="sm:hidden font-semibold">Nome: </span>{cliente.nome}</p>
                             <p><span className="sm:hidden font-semibold">Email: </span>{cliente.email}</p>
                             <p className="text-center">
                                 <span className="sm:hidden font-semibold">Status: </span>{cliente.status ? 'Ativo' : 'Inativo'}
@@ -48,10 +55,10 @@ export default function ClientsPage() {
             </div>
 
             <div className="flex justify-center flex-wrap gap-4 mt-8">
-                <Button asChild className="btn-primary">
+                <Button asChild variant="ghost">
                     <Link href="/"><MoveLeft className="mr-2" />Voltar</Link>
                 </Button>
-                <Button asChild className="btn-primary">
+                <Button asChild variant="ghost">
                     <Link href="/clientes/novo"><Plus className="mr-2" />Novo Cliente</Link>
                 </Button>
             </div>
