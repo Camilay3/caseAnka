@@ -40,6 +40,23 @@ export async function clienteRoutes(app: FastifyInstance) {
         }
     });
 
+    app.get<{ Params: { id: number } }>('/clientes/:id', async (request, reply) => {
+        const id = Number(request.params.id);
+        if (isNaN(id)) {
+            return reply.code(400).send({ error: 'ID inválido' });
+        }
+
+        const cliente = await prisma.cliente.findUnique({
+            where: { id }
+        });
+
+        if (!cliente) {
+            return reply.code(404).send({ error: 'Cliente não encontrado' });
+        }
+
+        reply.send(cliente);
+    });
+    
     app.put<{ Params: ClienteParams; Body: ClienteBody }>("/clientes/:id", async (request, reply) => {
         const id = Number(request.params.id);
         if (isNaN(id)) {

@@ -2,7 +2,7 @@ import { useMutation, useQueryClient } from 'react-query';
 import { ClientForm } from '@/components/ClientForm';
 import { api } from '@/lib/api';
 import { ClientFormData } from '@/schemas/clienteSchema';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 
 export default function NewClientPage() {
     const queryClient = useQueryClient();

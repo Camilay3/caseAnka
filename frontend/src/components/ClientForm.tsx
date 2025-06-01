@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { clienteSchema, ClientFormData } from '@/schemas/clienteSchema';
@@ -12,10 +13,18 @@ export function ClientForm({ defaultValues, onSubmit }: ClientFormProps) {
         register,
         handleSubmit,
         formState: { errors, isSubmitting },
+        reset, 
     } = useForm<ClientFormData>({
         resolver: zodResolver(clienteSchema),
-        defaultValues,
+        defaultValues, 
     });
+
+    // Sincroniza os valores do formulário com os defaultValues
+    useEffect(() => {
+        if (defaultValues) {
+            reset(defaultValues);
+        }
+    }, [defaultValues, reset]);
 
     return (
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
@@ -24,20 +33,17 @@ export function ClientForm({ defaultValues, onSubmit }: ClientFormProps) {
                 <input {...register('nome')} className="input" />
                 {errors.nome && <p className="error">{errors.nome.message}</p>}
             </div>
-
             <div>
                 <label>Email</label>
                 <input {...register('email')} className="input" />
                 {errors.email && <p className="error">{errors.email.message}</p>}
             </div>
-
             <div>
                 <label className="flex items-center space-x-2">
                     <input type="checkbox" {...register('status')} className="checkbox" />
                     <span>Status (Ativo)</span>
                 </label>
             </div>
-
             <button type="submit" disabled={isSubmitting} className="btn-primary">
                 Salvar
             </button>
