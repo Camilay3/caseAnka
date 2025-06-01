@@ -5,7 +5,7 @@ import { api } from '@/lib/api';
 
 interface Cliente {
     id: number;
-    name: string;
+    nome: string;
     email: string;
     status: boolean;
 }
@@ -28,7 +28,7 @@ export default function ClientsPage() {
             <ul>
                 {clientes!.map(cliente => (
                     <li key={cliente.id}>
-                        {cliente.name} — {cliente.email} — {cliente.status}
+                        {cliente.nome} — {cliente.email} — {cliente.status ? 'Ativo' : 'Inativo'}
                     </li>
                 ))}
             </ul>

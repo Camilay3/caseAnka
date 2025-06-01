@@ -1,3 +1,5 @@
+'use client';
+
 import { useQuery } from 'react-query';
 import { api } from '@/lib/api';
 
@@ -21,7 +23,6 @@ export default function AtivosPage() {
     return (
         <div>
             <h1>Ativos</h1>
-            <a href="/ativos/novo" className="btn-primary">Novo Ativo</a>
             <ul>
                 {ativos!.map(ativo => (
                     <li key={ativo.id}>

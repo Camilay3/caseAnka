@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { useRouter, useParams } from 'next/navigation';
 import { ClientFormData } from '@/schemas/clienteSchema';
 import { ClientForm } from '@/components/ClientForm';
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
 
 export default function EditarClientePage() {
     const params = useParams();
@@ -18,10 +19,9 @@ export default function EditarClientePage() {
 
     useEffect(() => {
         async function fetchCliente() {
-            const res = await fetch(`http://localhost:3001/clientes/${id}`);
+            const res = await fetch(`${API_URL}/clientes/${id}`);
             const data = await res.json();
 
-            console.log('Dados do backend:', data);
             const clienteFormatado = {
                 nome: data.name || data.nome,
                 email: data.email,
@@ -36,13 +36,13 @@ export default function EditarClientePage() {
     }, [id]);
 
     async function handleSubmit(data: ClientFormData) {
-        await fetch(`http://localhost:3001/clientes/${id}`, {
+        await fetch(`${API_URL}/clientes/${id}`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(data),
         });
 
-        router.push(`http://localhost:3001/clientes/${id}`);
+        router.push(`${API_URL}/clientes/${id}`);
     }
 
     if (loading) return <p>Carregando...</p>;

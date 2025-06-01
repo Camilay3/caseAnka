@@ -47,7 +47,14 @@ export async function clienteRoutes(app: FastifyInstance) {
         }
 
         const cliente = await prisma.cliente.findUnique({
-            where: { id }
+            where: { id },
+            include: {
+                alocacoes: {
+                    include: {
+                        ativo: true, // Nome e valor do(s) ativo(s) relacionado
+                    },
+                },
+            },
         });
 
         if (!cliente) {
@@ -56,7 +63,7 @@ export async function clienteRoutes(app: FastifyInstance) {
 
         reply.send(cliente);
     });
-    
+
     app.put<{ Params: ClienteParams; Body: ClienteBody }>("/clientes/:id", async (request, reply) => {
         const id = Number(request.params.id);
         if (isNaN(id)) {
