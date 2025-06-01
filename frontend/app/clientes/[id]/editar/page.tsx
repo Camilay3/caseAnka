@@ -42,16 +42,18 @@ export default function EditarClientePage() {
             body: JSON.stringify(data),
         });
 
-        router.push(`${API_URL}/clientes/${id}`);
+        router.push(`/clientes/${id}`);
     }
 
     if (loading) return <p>Carregando...</p>;
     if (!cliente) return <p>Cliente não encontrado</p>;
 
     return (
-        <div className="max-w-xl mx-auto">
-            <h1 className="text-2xl font-bold mb-4">Editar Cliente</h1>
-            <ClientForm defaultValues={cliente} onSubmit={handleSubmit} />
+        <div className="border-black border-1 dark:border-white border-solid rounded-xl w-full max-w-[30%] min-h-[400px] max-h-screen overflow-auto flex flex-col justify-between font-[family-name:var(--font-geist-sans)] px-4 sm:px-10 py-6 sm:py-10">
+            <div className="flex flex-col items-center w-full">
+                <h1 className="text-2xl font-bold mb-4">Editar Cliente</h1>
+                <ClientForm defaultValues={cliente} onSubmit={handleSubmit} />
+            </div>
         </div>
     );
 }
