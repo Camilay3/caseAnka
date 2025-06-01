@@ -24,17 +24,17 @@ export default function AtivosPage() {
     if (error) return <p>Erro ao carregar ativos.</p>;
 
     return (
-        <div className="border border-white border-solid rounded-xl w-full max-w-[50%] min-h-[600px] max-h-screen overflow-auto flex flex-col justify-between font-[family-name:var(--font-geist-sans)] px-4 sm:px-10 py-6 sm:py-10">
+        <div className="border-black border-1 dark:border-white border-solid rounded-xl w-full max-w-[50%] min-h-[600px] max-h-screen overflow-auto flex flex-col justify-between font-[family-name:var(--font-geist-sans)] px-4 sm:px-10 py-6 sm:py-10">
             <div className="flex flex-col items-center w-full">
                 <h1 className="text-xl mb-6 text-center">Ativos</h1>
-                <div className="hidden sm:grid grid-cols-[2fr_1fr] w-full border-b border-gray-300 pb-2 mb-4 text-sm font-semibold text-gray-100 gap-4">
+                <div className="hidden sm:grid grid-cols-[2fr_1fr] w-full border-b border-black dark:border-white dark:border-gray-300 pb-2 mb-4 text-sm font-semibold dark:text-gray-100 gap-4">
                     <p>Nome</p>
                     <p>Valor</p>
                 </div>
 
                 <div className="w-full">
                     {ativos!.map((ativo) => (
-                        <div key={ativo.id} className="grid grid-cols-1 sm:grid-cols-[2fr_1fr] gap-4 w-full border-b border-gray-200 py-2 text-sm text-white">
+                        <div key={ativo.id} className="grid grid-cols-1 sm:grid-cols-[2fr_1fr] gap-4 w-full border-b border-black dark:border-white dark:border-gray-300 py-2 text-sm dark:text-white">
                             
                             <p><span className="sm:hidden font-semibold">Nome: </span>{ativo.nome}</p>
                             <p>R$ <span className="sm:hidden font-semibold">Valor: </span>{ativo.valor}</p>

@@ -26,7 +26,7 @@ export default function RootLayout({
   return (
     <html lang="pt-br" className="scroll-smooth">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex items-center justify-center w-full`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex items-center justify-center w-full bg-[#a790d4] dark:bg-[#2e1b45]`}
       >
         <ReactQueryProvider>{children}</ReactQueryProvider>
       </body>

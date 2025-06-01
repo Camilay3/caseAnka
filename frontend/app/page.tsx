@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen pt-4 pb-10 px-8 sm:pt-0 sm:px-20 sm:pb-10 gap-10 font-[family-name:var(--font-geist-sans)] bg-[#a790d4] dark:bg-[#2e1b45]">
+    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen pt-4 pb-10 px-8 sm:pt-0 sm:px-20 sm:pb-10 gap-10 font-[family-name:var(--font-geist-sans)]">
       <main className="flex flex-col gap-[32px] row-start-2 sm:items-center">
         <Image
           src="/Investment.svg"
