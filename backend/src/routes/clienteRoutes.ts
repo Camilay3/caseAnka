@@ -1,6 +1,7 @@
 import { FastifyInstance } from "fastify";
 import { prisma } from "../server";
 import { clienteSchema } from "../schemas/clienteSchema";
+import { ZodError } from 'zod';
 
 interface ClienteParams {
     id: string; // Na rota HTTP o id vem como string
@@ -20,10 +21,22 @@ export async function clienteRoutes(app: FastifyInstance) {
     app.post<{ Body: ClienteBody }>("/clientes", async (request, reply) => {
         try {
             const data = clienteSchema.parse(request.body);
-            const cliente = await prisma.cliente.create({ data }); // Cria um novo cliente
+            const cliente = await prisma.cliente.create({ data });
             reply.code(201).send(cliente);
-        } catch (error) {
-            reply.code(400).send(error);
+        } catch (error: any) {
+            if (error instanceof ZodError) {
+                return reply.status(400).send({ message: 'Dados inválidos', errors: error.errors });
+            }
+
+            if (error?.code === 'P2002' && error?.meta?.target?.includes('email')) {
+                return reply.status(400).send({ message: 'E-mail já está em uso' });
+            }
+
+            if (error?.name === 'ZodError') {
+                return reply.status(400).send({ message: 'Dados inválidos', errors: error.errors });
+            }
+
+            return reply.status(500).send({ message: 'Erro interno do servidor' });
         }
     });
 

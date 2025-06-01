@@ -3,9 +3,14 @@ import { PrismaClient } from "@prisma/client";
 import { clienteRoutes } from "./routes/clienteRoutes";
 import { ativosRoutes } from "./routes/ativosRoutes";
 import { clienteAtivoRoutes } from "./routes/clienteAtivoRoutes";
+import cors from '@fastify/cors';
 
 const app = Fastify({ logger: true });
 const prisma = new PrismaClient();
+
+app.register(cors, {
+  origin: 'http://localhost:3000',
+});
 
 app.register(clienteRoutes);
 app.register(ativosRoutes);
