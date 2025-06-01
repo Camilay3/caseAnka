@@ -23,5 +23,18 @@ services:
     environment:
       DATABASE_URL: mysql://root:root@db:3306/investimentos
 
+#  frontend:
+#    build:
+#      context: ./frontend
+#    ports:
+#      - "3000:3000"
+#    volumes:
+#      - ./frontend:/app
+#      - /app/node_modules
+#    environment:
+#      - NEXT_PUBLIC_API_URL=http://localhost:3001
+#    depends_on:
+#      - backend
+
 volumes:
   db_data:

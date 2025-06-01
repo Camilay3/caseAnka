@@ -3,18 +3,6 @@ import { prisma } from "../server";
 import { alocacaoSchema } from "../schemas/alocacaoSchema";
 
 export async function clienteAtivoRoutes(app: FastifyInstance) {
-    app.get<{ Params: { id: string } }>("/clientes/:id/ativos", async (request, reply) => {
-        const clienteId = Number(request.params.id);
-        if (isNaN(clienteId)) return reply.code(400).send({ error: "ID inválido" });
-
-        const alocacoes = await prisma.alocacao.findMany({
-            where: { clienteId },
-            include: { ativo: true }, // traz os dados do ativo
-        });
-
-        reply.send(alocacoes);
-    });
-
     app.post<{ Params: { id: string } }>("/clientes/:id/ativos", async (request, reply) => {
         const clienteId = Number(request.params.id);
         if (isNaN(clienteId)) return reply.code(400).send({ error: "ID inválido" });
