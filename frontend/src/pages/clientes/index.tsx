@@ -1,6 +1,5 @@
 import { useQuery } from 'react-query';
 import { api } from '@/lib/api';
-import Link from 'next/link';
 
 interface Cliente {
     id: number;

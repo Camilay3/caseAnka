@@ -1,38 +1,38 @@
 import { useMutation, useQueryClient } from 'react-query';
-import { ClientForm } from '@/components/ClientForm';
+import { AtivoForm } from '@/components/AtivoForm';
 import { api } from '@/lib/api';
-import { ClientFormData } from '@/schemas/clienteSchema';
+import { AtivoFormData } from '@/schemas/ativosSchema';
 import { useRouter } from 'next/router';
 
-export default function NewClientPage() {
+export default function NewAtivoPage() {
     const queryClient = useQueryClient();
     const router = useRouter();
 
     const mutation = useMutation(
-        (newClient: ClientFormData) => api.post('/clientes', newClient),
+        (newAtivo: AtivoFormData) => api.post('/ativos', newAtivo),
         {
             onSuccess: () => {
-                queryClient.invalidateQueries('clientes');
-                router.push('/clientes');
+                queryClient.invalidateQueries('ativos');
+                router.push('/ativos');
             },
             onError: (error) => {
-                console.log('Erro ao salvar cliente:', error);
+                console.log('Erro ao salvar ativo:', error);
             }
         }
     );
 
-    function onSubmit(data: ClientFormData) {
+    function onSubmit(data: AtivoFormData) {
         mutation.mutate(data);
     }
 
     return (
         <div>
-            <h1>Novo Cliente</h1>
-            <ClientForm onSubmit={onSubmit} />
+            <h1>Novo Ativo</h1>
+            <AtivoForm onSubmit={onSubmit} />
             {mutation.isError && (
                 <p className="text-red-500 mt-2">
                     {(mutation.error as any)?.response?.data?.message ||
-                        'Erro ao salvar cliente.'}
+                        'Erro ao salvar ativo.'}
                 </p>
             )}
         </div>
