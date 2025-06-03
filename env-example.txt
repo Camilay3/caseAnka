@@ -1,0 +1,9 @@
+NEXT_PUBLIC_API_URL=http://localhost:3001 # Servidor backend
+
+MYSQL_ROOT_PASSWORD=S3nh4MySQLR00t2025 # Sem caracteres especiais como @, de preferência
+MYSQL_USER=user # Usuário a acessar o sql
+MYSQL_PASSWORD=F0rteP4ssword123 # Sem caracteres especiais como @, de preferência
+MYSQL_DATABASE=investimentos # Nome do banco
+MYSQL_HOST=db # Nome definido no docker ou localhost se for local
+
+DATABASE_URL="mysql://${MYSQL_USER}:${MYSQL_PASSWORD}@${MYSQL_HOST}:3306/${MYSQL_DATABASE}?schema=public?connect_timeout=300"
