@@ -25,7 +25,7 @@ export default function ClientsPage() {
     if (error) return <p>Erro ao carregar clientes.</p>;
 
     return (
-        <div className="border-black border-1 dark:border-white border-solid rounded-xl w-full max-w-[80%] min-h-[600px] max-h-screen overflow-auto flex flex-col justify-between font-[family-name:var(--font-geist-sans)] px-4 sm:px-10 py-6 sm:py-10">
+        <div className="border-black border-1 dark:border-white border-solid rounded-xl w-full max-w-[80%] min-h-[600px] flex flex-col justify-between font-[family-name:var(--font-geist-sans)] px-4 sm:px-10 py-6 sm:py-10">
             <div className="flex flex-col items-center w-full">
                 <h1 className="text-xl mb-6 text-center">Clientes</h1>
                 <div className="hidden sm:grid grid-cols-[2fr_3fr_1fr] w-full border-b border-black dark:border-white dark:border-gray-300 pb-2 mb-4 text-sm font-semibold dark:text-gray-100 gap-4">
@@ -34,9 +34,9 @@ export default function ClientsPage() {
                     <p className="text-center">Status</p>
                 </div>
 
-                <div className="w-full">
+                <div className="w-full max-h-[50vh] overflow-auto">
                     {clientes!.map((cliente) => (
-                        <div key={cliente.id} className="grid grid-cols-1 sm:grid-cols-[2fr_3fr_1fr] gap-4 w-full border-b border-black dark:border-white dark:border-gray-200 py-2 text-sm dark:text-white">
+                        <div key={cliente.id} className="grid grid-cols-1 sm:grid-cols-[2fr_3fr_1fr] gap-4 w-full border-b border-black dark:border-white dark:border-gray-200 text-sm dark:text-white p-2">
                             <p>
                                 <Button variant="link" size="icon" className="cursor-pointer dark:text-white size-2 mr-4">
                                     <Link href={`/clientes/${cliente.id}`}><Eye /></Link>

@@ -71,7 +71,7 @@ export default function ClienteDetalhesPage() {
                     <p>Valor</p>
                 </div>
 
-                <div className="w-full max-w-3xl">
+                <div className="w-full max-w-3xl max-h-[40vh] overflow-auto">
                     {cliente.alocacoes?.length ? (
                         cliente.alocacoes.map((aloc: any) => (
                             <div

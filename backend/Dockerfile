@@ -1,15 +1,12 @@
-
-FROM node:18
+FROM node:18-alpine
 
 WORKDIR /app
 COPY package*.json ./
 RUN npm install
 
-# Copia todo o código para dentro do container
 COPY . .
 
-RUN npx prisma generate
-RUN apt-get update && apt-get install -y default-mysql-client
+RUN apk add --no-cache mysql-client
 EXPOSE 3001
 
-CMD ["npm", "run", "dev"]
+CMD ["npm", "run", "db:deploy"]

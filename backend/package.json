@@ -6,6 +6,7 @@
     "dev": "tsx src/server.ts",
     "start": "tsx src/server.ts",
     "build": "tsup src/server.ts --format cjs --out-dir dist",
+    "db:deploy": "sleep 40 && npx prisma generate && npx prisma db push && npm run dev",
     "prisma:generate": "prisma generate",
     "prisma:migrate": "prisma migrate dev"
   },
