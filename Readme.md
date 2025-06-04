@@ -83,6 +83,5 @@ O foco principal está na implementação funcional, não no design visual. A li
 #### Tela principal
 ![image](https://github.com/user-attachments/assets/e15a54b4-2454-45a6-8ab7-6f2282db302b)
 
-<br>
 ## 📧 Contato
 Para dúvidas, feedbacks e/ou sugestões, entre em contato: [camila.santiago026@gmail.com]
